@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Piedra, Papel o Tijera</title>
+  <style>
+    body { font-family: sans-serif; text-align: center; padding: 2rem; }
+    button { font-size: 1.2rem; margin: 0.5rem; padding: 0.5rem 1rem; }
+    #resultado { margin-top: 2rem; font-size: 1.5rem; }
+  </style>
+</head>
+<body>
+  <h1>Piedra, Papel o Tijera</h1>
+  <p>Haz tu elección:</p>
+  <button onclick="jugar('piedra')">🪨 Piedra</button>
+  <button onclick="jugar('papel')">📄 Papel</button>
+  <button onclick="jugar('tijera')">✂️ Tijera</button>
+
+  <div id="resultado"></div>
+
+  <script>
+    async function jugar(eleccion) {
+      const res = await fetch('/jugar', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ eleccion })
+      });
+
+      const data = await res.json();
+      document.getElementById('resultado').innerHTML = `
+        <p><strong>Tú:</strong> ${data.tuEleccion}</p>
+        <p><strong>CPU:</strong> ${data.eleccionCPU}</p>
+        <p><strong>Resultado:</strong> ${data.resultado}</p>
+      `;
+    }
+  </script>
+</body>
+</html>

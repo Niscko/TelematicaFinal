@@ -1,0 +1,12 @@
+{
+  "name": "telematic-service-js",
+  "version": "1.0.0",
+  "description": "API de piedra, papel o tijera usando Express",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
